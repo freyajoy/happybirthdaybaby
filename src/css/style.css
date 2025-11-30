@@ -1,0 +1,269 @@
+:root {
+  --bg-light: linear-gradient(135deg, #ffe3ee, #ffd3e9, #fff1f7);
+  --bg-dark: radial-gradient(circle at top, #0f172a, #020617);
+  --text-light: #222;
+  --text-dark: #f9fafb;
+  --card-light: #ffffff;
+  --card-dark: #1f2937;
+  --accent-pink: #ff6fa8;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+/* BODY (theme-controlled) */
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+body.light-mode {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.dark-mode {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* Fade out when leaving */
+.fade-out {
+  animation: fadeOut 0.8s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+body.dark-mode .theme-toggle {
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+}
+
+/* Floating hearts */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hearts span {
+  position: absolute;
+  bottom: -40px;
+  font-size: 1.8rem;
+  opacity: 0.8;
+  animation: heartFloat 6s linear infinite;
+}
+
+.hearts span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.hearts span:nth-child(2) { left: 30%; animation-delay: 1s; }
+.hearts span:nth-child(3) { left: 50%; animation-delay: 2s; }
+.hearts span:nth-child(4) { left: 70%; animation-delay: 3s; }
+.hearts span:nth-child(5) { left: 85%; animation-delay: 4s; }
+
+@keyframes heartFloat {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.9; }
+  100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+}
+
+/* Main container */
+.landing-container {
+  text-align: center;
+  z-index: 2;
+  animation: fadeIn 1s ease;
+  padding: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Falling letter */
+.letter-drop {
+  perspective: 800px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.letter-card {
+  background: var(--card-light);
+  padding: 10px 18px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transform: translateY(-200px) rotateX(25deg);
+  animation: letterDrop 1s ease-out forwards;
+}
+
+body.dark-mode .letter-card {
+  background: var(--card-dark);
+  color: var(--text-dark);
+}
+
+@keyframes letterDrop {
+  0% {
+    transform: translateY(-200px) rotateX(25deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(8px) rotateX(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Sound hint */
+.sound-hint {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 8px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* Main text */
+.landing-title {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.landing-subtitle {
+  font-size: 1rem;
+  min-height: 1.4em;
+  opacity: 0.85;
+}
+
+/* Buttons */
+.button-row {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.gift-btn,
+.kiss-btn {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.2s;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+.gift-btn {
+  background: var(--accent-pink);
+  color: #ffffff;
+}
+
+.gift-btn:hover {
+  transform: scale(1.05);
+}
+
+.kiss-btn {
+  background: #ffffff;
+  color: #333;
+}
+
+body.dark-mode .kiss-btn {
+  background: #111827;
+  color: #f9fafb;
+}
+
+.kiss-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Kiss bubble */
+.kiss-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.95);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  animation: kissPop 0.4s ease;
+}
+
+body.dark-mode .kiss-bubble {
+  background: rgba(15,23,42,0.95);
+  color: var(--text-dark);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes kissPop {
+  0% { transform: translateX(-50%) scale(0.7); opacity: 0; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Signature */
+.signature {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  animation: fadeIn 1.5s ease;
+}
+
+/* Sparkles for gift click */
+.sparkle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff, rgba(255,255,255,0));
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleFly 0.8s ease-out forwards;
+  z-index: 9999;
+}
+
+@keyframes sparkleFly {
+  to {
+    transform: translateY(-60px) scale(0.3);
+    opacity: 0;
+  }
+}

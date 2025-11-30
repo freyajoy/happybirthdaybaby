@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Your Tiny Gift 🎁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- use a separate CSS for the start page -->
+  <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    
+
+<body class="light-mode">
+
+  <!-- Dark / Light toggle -->
+  <button id="themeToggle" class="theme-toggle">☀️</button>
+
+  <!-- Floating hearts -->
+  <div class="hearts">
+    <span>💖</span><span>💗</span><span>💕</span><span>💘</span><span>💞</span>
+  </div>
+
+  <div class="landing-container">
+    <div class="letter-drop">
+      <div class="letter-card">
+        <p class="letter-top">For you, birthday boy 💌</p>
+      </div>
+    </div>
+
+    <p class="sound-hint">Best with sound on 🎧</p>
+
+    <h1 class="landing-title">I made you something…</h1>
+    <p id="typingSubtitle" class="landing-subtitle"
+       data-text="It's small and made just for you.">
+    </p>
+
+    <div class="button-row">
+      <button id="giftBtn" class="gift-btn">I got you a tiny gift 🎁</button>
+      <button id="kissBtn" class="kiss-btn">Can I give you a kiss? 😚</button>
+    </div>
+
+    <div id="kissBubble" class="kiss-bubble hidden">
+      *mwah* 😘
+    </div>
+
+    <p class="signature">Made with so much love, by yours truely ♡</p>
+  </div>
+
+  <!-- Sounds -->
+  <audio id="kissSound" src="../images/kiss.mp4"></audio>
+  <audio id="startMusic" src="../images/music.mp3" loop></audio>
+
+  <!-- use a separate JS for the start page -->
+  <script src="../javascript/script.js"></script>
 </body>
 </html>
